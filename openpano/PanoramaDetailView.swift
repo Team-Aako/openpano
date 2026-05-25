@@ -225,7 +225,7 @@ struct PanoramaInfoSheet: View {
             } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.black)
                     .frame(width: 40, height: 40)
                     .glassEffect(.regular, in: Circle())
             }
