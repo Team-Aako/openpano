@@ -256,6 +256,12 @@
 				DEVELOPMENT_TEAM = N7BMGT3KJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenPano;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSCameraUsageDescription = "OpenPano uses the camera to capture 360° panoramas.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "OpenPano tags each panorama with the location where it was captured.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "OpenPano uses device motion so you can look around panoramas by moving your phone.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "OpenPano saves your finished panoramas to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +294,12 @@
 				DEVELOPMENT_TEAM = N7BMGT3KJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenPano;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSCameraUsageDescription = "OpenPano uses the camera to capture 360° panoramas.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "OpenPano tags each panorama with the location where it was captured.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "OpenPano uses device motion so you can look around panoramas by moving your phone.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "OpenPano saves your finished panoramas to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
