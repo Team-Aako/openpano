@@ -1,8 +1,41 @@
 # OpenPano
 
+<p align="center">
+  <img src="docs/header.png" alt="OpenPano — open source, locally computed panorama capture" width="100%">
+</p>
+
 An open-source iOS app for capturing and viewing 360° equirectangular panoramas, developed by Aako, Inc.
 
 While building the [Aako App](https://apps.apple.com/us/app/aako-memory-map/id6503721703), we researched and built a panorama framework that uses ARKit's camera-pose data to capture and stitch equirectangular panoramas — **no feature matching, no OpenCV, and every computation runs locally on your iPhone.** In our testing the results came out simply **better** than most apps, which lean on cloud compute and charge you for it. It's 2026 — a great panorama shouldn't be locked behind a server or a subscription. So we open-sourced ours for everyone to use and build on. It's ideal for photographers, for data collection, and for anyone working on world models or 3D Gaussian splatting (3DGS).
+
+## Sample panoramas
+
+Real 4096×2048 equirectangular panoramas captured and stitched entirely on an iPhone — no cloud, no manual editing.
+
+<p align="center">
+  <img src="docs/sample-street-1.jpg" alt="Street corner in East Harlem, New York" width="100%">
+  <br><em>Street corner — East Harlem, New York</em>
+</p>
+
+<p align="center">
+  <img src="docs/sample-street-2.jpg" alt="Sidewalk and parked cars in New York" width="100%">
+  <br><em>Sidewalk view — New York</em>
+</p>
+<p align="center">
+  <img src="docs/sample-interior.jpg" alt="Interior apartment panorama" width="100%">
+  <br><em>Bad example: Interior — apartment living space</em>
+</p>
+
+## Known issues
+
+As you can see in the sample panoramas, the results aren't perfect yet. Two factors cause most of the artifacts:
+
+1. **Moving too fast while capturing.** Quick motion gives ARKit noisier pose data, and the projection is only as good as that ground truth.
+2. **Objects too close to the camera.** Because we stitch multiple frames taken from slightly different angles, nearby objects shift between shots (parallax) and don't line up cleanly.
+
+You'll get the best results by standing somewhere open, well away from anything close by — the middle of a plaza is ideal — and turning slowly and steadily.
+
+We're actively working on improving the algorithm to reduce these artifacts. Contributions are very welcome!
 
 ## Features
 
