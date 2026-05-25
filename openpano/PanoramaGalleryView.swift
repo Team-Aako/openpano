@@ -295,7 +295,7 @@ struct AboutView: View {
                         .foregroundStyle(.primary)
 
                     HStack(spacing: 12) {
-                        linkChip("GitHub", url: "https://github.com/aako-world/openpano")
+                        linkChip("GitHub", url: "https://github.com/Team-Aako/openpano")
                         linkChip("Aako", url: "https://aako.world")
                     }
 
