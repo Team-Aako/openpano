@@ -290,7 +290,7 @@ struct AboutView: View {
                     Text("OpenPano")
                         .font(.system(size: 40, weight: .heavy))
 
-                    Text("An open-source iOS app for capturing and viewing 360° equirectangular panoramas. Developed by Aako, Inc.")
+                    Text("An open-source iOS app for capturing and viewing 360° equirectangular panoramas developed by Aako, Inc.")
                         .font(.system(size: 16))
                         .foregroundStyle(.primary)
 

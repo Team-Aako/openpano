@@ -1,22 +1,25 @@
-# openpano
+# OpenPano
 
-An open-source iOS app for capturing and viewing 360° equirectangular panoramas.
+An open-source iOS app for capturing and viewing 360° equirectangular panoramas, developed by Aako, Inc.
 
-It uses **ARKit** to guide a multi-row capture and projects the photos onto an
-equirectangular canvas using camera pose data — **no feature-matching or OpenCV
-required**. Captured panoramas are viewed inside a **SceneKit** sphere that you
-can explore with the gyroscope or by dragging.
+While building the [Aako App](https://apps.apple.com/us/app/aako-memory-map/id6503721703), we researched and built a panorama framework that uses ARKit's camera-pose data to capture and stitch equirectangular panoramas — **no feature matching, no OpenCV, and every computation runs locally on your iPhone.** In our testing the results came out simply **better** than most apps, which lean on cloud compute and charge you for it. It's 2026 — a great panorama shouldn't be locked behind a server or a subscription. So we open-sourced ours for everyone to use and build on. It's ideal for photographers, for data collection, and for anyone working on world models or 3D Gaussian splatting (3DGS).
 
 ## Features
 
-- **Gallery** — a grid of every panorama you've captured, with a **Create Pano**
-  button. Long-press a thumbnail to delete it.
-- **Guided capture** — ARKit-driven aiming reticle walks you through three rows
-  (level, up, down) of overlapping photos, then projects them into a 4096×2048
-  equirectangular image.
+- **Date-grouped gallery** — captured panoramas listed by day (Today, Yesterday,
+  …) as wide banners, each showing its capture time and reverse-geocoded
+  location (City, Country, with a raw lat/lon fallback). A bottom **Capture
+  panorama** button starts a new capture; long-press a panorama to delete it.
+- **Guided capture** — an ARKit-driven aiming reticle walks you through three
+  rows (level, up, down) of overlapping photos, then projects them into a
+  4096×2048 equirectangular image with a live progress screen.
 - **Immersive viewer** — look around a panorama on the inside of a sphere.
-  Toggle between **gyroscope** and **finger drag** control.
-- **Share** — export any panorama through the native iOS share sheet.
+  Toggle between **gyroscope** and **finger drag** control, with Liquid Glass
+  controls.
+- **Geotagging** — capture location is recorded, persisted, and embedded as
+  **EXIF/GPS metadata** in the saved JPEG.
+- **Save & share** — save to your photo library (with location preserved) or
+  export through the native iOS share sheet.
 
 ## Architecture
 
@@ -25,15 +28,25 @@ can explore with the gyroscope or by dragging.
 | `Panorama360CaptureView.swift` | ARKit guided multi-row capture UI |
 | `EquirectangularProjector.swift` | Sensor-based equirectangular projection engine |
 | `PanoramaSphereView.swift` | SceneKit sphere viewer (gyro + drag) |
-| `PanoramaDetailView.swift` | Viewer chrome: gyro toggle + share |
-| `PanoramaGalleryView.swift` | Grid + navigation |
-| `PanoramaStore.swift` | On-disk persistence (JPEG in Documents) |
+| `PanoramaDetailView.swift` | Viewer chrome: controls, save/share, map info sheet |
+| `PanoramaGalleryView.swift` | Date-grouped gallery, About sheet, reverse geocoding |
+| `PanoramaStore.swift` | On-disk persistence (JPEG + coordinate metadata) |
+| `LocationProvider.swift` | CoreLocation wrapper used during capture |
+| `UIImage+Pano.swift` | Image scaling, thumbnail downsampling, EXIF/GPS JPEG encoding |
 
 ## Requirements
 
 - iOS 26.2+
 - A device with a rear camera and gyroscope (capture needs ARKit; it does not
-  run in the Simulator). The viewer's gyro mode needs a real device too.
+  run in the Simulator). The viewer's gyro mode and geotagging need a real
+  device too.
+
+## Permissions
+
+- **Camera** — capturing the panorama frames.
+- **Motion** — gyroscope look-around in the viewer.
+- **Location (When In Use)** — tagging each panorama with where it was taken.
+- **Photo Library (Add)** — saving panoramas to Photos.
 
 ## Build
 
@@ -49,6 +62,14 @@ development team and bundle identifier in the target's signing settings.
 4. The captured frames are inverse-mapped onto a sphere: for each output pixel
    the projector finds the best-facing source image (weighted by angle and edge
    distance) and blends overlapping contributions.
+5. The finished panorama is saved with its capture location, and the app opens
+   straight into the immersive viewer.
+
+## Contributing
+
+Contributions are welcome! Open a pull request with your changes and we'll
+review and merge it. Whether it's a bug fix, a new feature, or a docs
+improvement, we'd love your help making OpenPano better.
 
 ## License
 
